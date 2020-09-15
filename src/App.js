@@ -1,25 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import Card from './Card';
+import Place from './Place';
 
-function App() {
+const cards = [
+  // { type: "number", value: 1 },
+  // { type: "number", value: 2 },
+  // { type: "number", value: 3 },
+  // { type: "number", value: 4 }
+  1, 2, 3, 4
+]
+
+const App = () => {
+
+  const [selectedCards, setSelectedCards] = React.useState();
+  const [currCards, setCurrCards] = React.useState(cards);
+
+  const addCardHandler = (newCard) => {
+    setSelectedCards(newCard);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div className="App">
+        <Place addCardHandler={addCardHandler} selectedCards={selectedCards} setSelectedCards={setSelectedCards} setCurrCards={setCurrCards}/>
+        <Place addCardHandler={addCardHandler} selectedCards={selectedCards} setSelectedCards={setSelectedCards} setCurrCards={setCurrCards} />
+        <div>
+          {currCards.map((e, i) => {
+            return <Card e={e} key={i}/>
+          })}
+        </div>
+      </div>
+    </DndProvider>
   );
 }
 
