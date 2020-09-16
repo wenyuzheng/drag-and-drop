@@ -13,21 +13,20 @@ const cards = [
   1, 2, 3, 4
 ]
 
+const placesNum = Array.from({ length: 5 }, (_, i) => i + 1);
+
 const App = () => {
 
-  const [selectedCards, setSelectedCards] = React.useState();
+  // const [selectedCards, setSelectedCards] = React.useState();
   const [currCards, setCurrCards] = React.useState(cards);
-
-  const addCardHandler = (newCard) => {
-    setSelectedCards(newCard);
-  }
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="App">
-        <Place addCardHandler={addCardHandler} selectedCards={selectedCards} setSelectedCards={setSelectedCards} setCurrCards={setCurrCards}/>
-        <Place addCardHandler={addCardHandler} selectedCards={selectedCards} setSelectedCards={setSelectedCards} setCurrCards={setCurrCards} />
-        <div>
+        {placesNum.map((e) => {
+          return <Place key={e} setCurrCards={setCurrCards} />
+        })}
+      <div>
           {currCards.map((e, i) => {
             return <Card e={e} key={i}/>
           })}

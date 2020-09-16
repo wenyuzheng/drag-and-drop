@@ -27,7 +27,7 @@ const Place = (props) => {
     const color = isOver ? "yellow" : "white";
 
     return (
-        <div
+        <button
             ref={drop}
             style={{
                 position: 'relative',
@@ -37,9 +37,12 @@ const Place = (props) => {
                 margin: 10,
                 backgroundColor: color
             }}
+            onClick={() =>{
+                console.log(number)
+            }}
         >
             {number} 
-        </div>
+        </button>
     )
 }
 

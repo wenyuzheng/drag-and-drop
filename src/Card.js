@@ -12,7 +12,7 @@ const Card = (props) => {
     })
 
     return (
-        <div
+        <button
             ref={drag}
             style={{
                 opacity: isDragging ? 0.5 : 1,
@@ -20,13 +20,14 @@ const Card = (props) => {
                 fontWeight: 'bold',
                 cursor: 'move',
                 border: "2px black solid",
-                margin: "20px auto",
+                margin: "20px",
                 padding: "20px",
                 width: "50px"
             }}
+            onClick={() => console.log( props.e, "is clicked")}
         >
             {props.e}
-        </div>
+        </button>
     )
 }
 
